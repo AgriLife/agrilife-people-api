@@ -14,7 +14,7 @@ module.exports = (grunt) ->
         ]
     gh_release:
       options:
-        token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN
+        token: process.env.RELEASE_KEY
         owner: 'agrilife'
         repo: '<%= pkg.name %>'
       release:
