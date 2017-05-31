@@ -9,7 +9,8 @@ module.exports = (grunt) ->
         files: [
           {src: ['css/*.css']},
           {src: ['**/*.php']},
-          {src: ['**/*.json']},
+          {src: ['*.json']},
+          {src: ['vendor/*']},
           {src: ['README.md']}
         ]
     gh_release:
