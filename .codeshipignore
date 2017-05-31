@@ -47,3 +47,4 @@ package.json
 *.md
 *.coffee
 node_modules
+*.zip
