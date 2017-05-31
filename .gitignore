@@ -40,16 +40,6 @@ intermediate
 .idea
 cache
 
-# No need to version control compiled files
-css/*.css
-js/*.js
-css/*.css.map
-
 # Ignore dependencies using package control
 node_modules
-bower_components/*
-!bower_components/foundation
 vendor
-
-# Ignore release file
-AgriFlex3.zip

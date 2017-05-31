@@ -1,0 +1,27 @@
+/**
+ * Plugin Name: AgriLife People API
+ * Plugin URI: https://github.com/AgriLife/agrilife-people-api
+ * Description: Display AgriLife People API data
+ * Version: 1.0.2
+ * Author: Zach Watkins
+ * Author URI: http://github.com/ZachWatkins
+ * Author Email: zachary.watkins@ag.tamu.edu
+ * License: GPL2+
+ */
+
+.page-template-people-list .row .column .photo-container img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+}
+
+/* Medium only */
+@media screen and (min-width: 40.0625em) and (max-width: 1140px) {
+	.page-template-people-list .row {
+		max-width: 750px;
+	}
+
+	.page-template-people-list .row .column:first-child + .column + .column {
+	  clear: left;
+	}
+}
