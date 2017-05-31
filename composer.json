@@ -1,0 +1,21 @@
+{
+    "name": "agrilife/peopleapi",
+    "description": "Display AgriLife People API data",
+    "license": "GPL2+",
+    "authors": [
+        {
+            "name": "Zachary Watkins",
+            "email": "zachary.watkins@ag.tamu.edu"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+    },
+	"require-dev": {
+	},
+    "autoload": {
+        "psr-4": {
+            "AgriLife\\PeopleAPI\\": "src"
+        }
+    }
+}
