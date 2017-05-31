@@ -1,3 +1,7 @@
+![Master branch](https://codeship.com/projects/a2120f90-285f-0135-d25d-5ece7f76f3e5/status?branch=master) on Master branch
+
+![Staging branch](https://codeship.com/projects/a2120f90-285f-0135-d25d-5ece7f76f3e5/status?branch=staging) on Staging branch
+
 # AgriLife People API WordPress Plugin
 
 This plugin provides a page template that will display entries from the AgriLife People database for extension research centers.
