@@ -21,3 +21,10 @@ define( 'AG_PEOPLEAPI_TEMPLATE_PATH', AG_PEOPLEAPI_DIR_PATH . 'view' );
 $apapi_home_template = new AgriLife\PeopleAPI\PageTemplate();
 $apapi_home_template->with_path( AG_PEOPLEAPI_TEMPLATE_PATH )->with_file( 'people-list' )->with_name( 'People' );
 $apapi_home_template->register();
+
+function agppl_add_query_vars($vars) {
+	$vars[] = 'single_person';
+	$vars[] = 'person_id';
+	return $vars;
+}
+add_filter('query_vars', 'agppl_add_query_vars');
