@@ -148,10 +148,6 @@ function people_list() {
 
             echo '</div>';
 
-            echo '<pre>';
-            print_r($person);
-            echo '</pre>';
-
         } else {
 
             echo '<div class="row">';
