@@ -4,41 +4,20 @@ namespace AgriLife\PeopleAPI;
 
 class Data {
 
-	public function __construct() {
-
-	}
-
 	// Call the webservice for units or people
 	public function call( $method, $data ){
 
-	    $url = 'https://agrilifepeople.tamu.edu/api/';
+	    $function = null;
+     $url = 'https://agrilifepeople.tamu.edu/api/';
 
 	    switch ($method){
 
         case "units" :
-          $data = array_merge( array(
-            'limit_to_active' =>  0,
-            'entity_id' => null,
-            'parent_unit_id' => null,
-            'search_string' => null,
-            'limited_units' => null,
-            'exclude_units' => null,
-          ), $data );
+          $data = array_merge( ['limit_to_active' =>  0, 'entity_id' => null, 'parent_unit_id' => null, 'search_string' => null, 'limited_units' => null, 'exclude_units' => null], $data );
           break;
 
         case "people" :
-          $data = array_merge( array(
-            'person_active_status' => null,
-            'restrict_to_public_only' => 1,
-            'search_specializations' => null,
-            'limited_units' => null,
-            'limited_entity' => null,
-            'limited_personnel' => null,
-            'limited_roles' => null,
-            'include_directory_profile' => 0,
-            'include_specializations' => 1,
-            'include_affiliated' => 0,
-          ), $data );
+          $data = array_merge( ['person_active_status' => null, 'restrict_to_public_only' => 1, 'search_specializations' => null, 'limited_units' => null, 'limited_entity' => null, 'limited_personnel' => null, 'limited_roles' => null, 'include_directory_profile' => 0, 'include_specializations' => 1, 'include_affiliated' => 0], $data );
           break;
 
 	        default:
@@ -47,8 +26,7 @@ class Data {
 
 	    $url .= $method;
 
-	    if (!empty($data))
-        $url = sprintf("%s?%s", $url, http_build_query($data));
+	    $url = sprintf("%s?%s", $url, http_build_query($data));
 
 	    $curl = curl_init();
 	    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -69,11 +47,7 @@ class Data {
         die('</pre>');
 	    }
 
-	    $response = array(
-        'url' => $url,
-        'json' => json_decode($curl_response, true),
-        'raw' => $curl_response,
-	    );
+	    $response = ['url' => $url, 'json' => json_decode($curl_response, true, 512, JSON_THROW_ON_ERROR), 'raw' => $curl_response];
 
 	    curl_close($curl);
 
@@ -101,13 +75,12 @@ class Data {
     return $link;
 	}
 
-	public function array_orderby(){
+	public function array_orderby(...$args){
 
-		$args = func_get_args();
 		$data = array_shift($args);
     foreach ($args as $n => $field) {
       if (is_string($field)) {
-        $tmp = array();
+        $tmp = [];
         foreach ($data as $key => $row)
           $tmp[$key] = $row[$field];
       	$args[$n] = $tmp;

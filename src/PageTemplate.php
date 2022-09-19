@@ -84,15 +84,17 @@ class PageTemplate {
 
 	public function register() {
 
-		if ( version_compare( floatval($GLOBALS['wp_version']), '4.7', '<' ) ) {
-			$filters['dropdown']       = add_filter( 'page_attributes_dropdown_pages_args', array( $this, 'add_to_cache' ) );
+		$filters = [];
+  $filter = [];
+  if ( version_compare( floatval($GLOBALS['wp_version']), '4.7', '<' ) ) {
+			$filters['dropdown']       = add_filter( 'page_attributes_dropdown_pages_args', fn($atts) => $this->add_to_cache($atts) );
 		} else {
-			$filter['dropdown']        = add_filter( 'theme_page_templates', array( $this, 'add_to_cache_templates' ) );
+			$filter['dropdown']        = add_filter( 'theme_page_templates', fn($templates) => $this->add_to_cache_templates($templates) );
 		}
 
-		$filters['admin_init']       = add_filter( 'admin_init', array( $this, 'add_to_cache' ) );
-		$filters['post_data']        = add_filter( 'wp_insert_post_data', array( $this, 'add_to_cache' ) );
-		$filters['template_include'] = add_filter( 'template_include', array( $this, 'view_project_template' ) );
+		$filters['admin_init']       = add_filter( 'admin_init', fn($atts) => $this->add_to_cache($atts) );
+		$filters['post_data']        = add_filter( 'wp_insert_post_data', fn($atts) => $this->add_to_cache($atts) );
+		$filters['template_include'] = add_filter( 'template_include', fn($template) => $this->view_project_template($template) );
 
 		return $filters;
 
@@ -103,12 +105,12 @@ class PageTemplate {
 		$cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
 
 		if ( empty( $templates ) ) {
-			$templates = array();
+			$templates = [];
 		}
 
 		wp_cache_delete( $cache_key, 'themes' );
 
-		$new_template = array( $this->file => $this->name );
+		$new_template = [$this->file => $this->name];
 
 		$templates = array_merge( $templates, $new_template );
 
@@ -126,12 +128,12 @@ class PageTemplate {
 		$templates = wp_get_theme()->get_page_templates();
 
 		if ( empty( $templates ) ) {
-			$templates = array();
+			$templates = [];
 		}
 
 		wp_cache_delete( $cache_key, 'themes' );
 
-		$new_template = array( $this->file => $this->name );
+		$new_template = [$this->file => $this->name];
 
 		$templates = array_merge( $templates, $new_template );
 

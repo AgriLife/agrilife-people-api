@@ -9,10 +9,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {
+    "require-dev": {
+        "rector/rector": "^0.14.2"
     },
-	"require-dev": {
-	},
     "autoload": {
         "psr-4": {
             "AgriLife\\PeopleAPI\\": "src"
